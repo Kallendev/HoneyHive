@@ -39,20 +39,22 @@ function Hero() {
         .from(
           '.hero-button',
           {
-            y: 20,
+            y: 25,
             opacity: 0,
             duration: 0.6,
           },
           '-=0.4'
         )
         .from(
-          '.hero-product',
+          '.honey-jar',
           {
-            scale: 1.15,
+            scale: 0.75,
             opacity: 0,
-            duration: 1.4,
+            rotation: -8,
+            duration: 1.2,
+            ease: 'elastic.out(1, 0.6)',
           },
-          '-=0.8'
+          '-=1'
         )
     }, heroRef)
 
@@ -62,38 +64,41 @@ function Hero() {
   return (
     <section className="hero" ref={heroRef}>
       <div className="hero-content">
-
         <p className="hero-eyebrow">
           Naturally made · Carefully harvested
         </p>
 
         <h1 className="hero-title">
-          <span className="hero-title-line">Nature</span>
-          <span className="hero-title-line">tastes</span>
-          <span className="hero-title-line">better.</span>
+          <span className="hero-title-line">NATURE</span>
+          <span className="hero-title-line hero-title-accent">TASTES</span>
+          <span className="hero-title-line">BETTER.</span>
         </h1>
 
         <p className="hero-description">
-          Pure honey, thoughtfully harvested from
-          the places where nature still speaks.
+          Pure honey, thoughtfully harvested from the places
+          where nature still speaks.
         </p>
 
-        <a href="#products" className="hero-button">
+        <a href="#honey" className="hero-button">
           Discover our honey
           <span>↗</span>
         </a>
-
       </div>
 
-      <div className="hero-product">
-        <div className="product-circle">
-          🍯
+      <div className="hero-visual">
+        <div className="honey-jar">
+          <div className="jar-label">
+            <span>HIVE</span>
+            <span>&</span>
+            <span>HARVEST</span>
+          </div>
         </div>
-      </div>
 
-      <div className="hero-label">
-        <span>100%</span>
-        Natural
+        <div className="hero-stamp">
+          100%
+          <br />
+          NATURAL
+        </div>
       </div>
     </section>
   )
