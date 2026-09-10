@@ -5,22 +5,24 @@ function Header() {
   const headerRef = useRef(null)
 
   useEffect(() => {
-    const header = headerRef.current
+    const ctx = gsap.context(() => {
+      gsap.fromTo(
+        headerRef.current,
+        {
+          y: -40,
+          opacity: 0,
+        },
+        {
+          y: 0,
+          opacity: 1,
+          duration: 1,
+          delay: 0.3,
+          ease: 'power3.out',
+        }
+      )
+    }, headerRef)
 
-    gsap.fromTo(
-      header,
-      {
-        y: -30,
-        opacity: 0,
-      },
-      {
-        y: 0,
-        opacity: 1,
-        duration: 1,
-        delay: 0.3,
-        ease: 'power3.out',
-      }
-    )
+    return () => ctx.revert()
   }, [])
 
   return (
@@ -31,7 +33,7 @@ function Header() {
 
       <nav>
         <a href="#story">Story</a>
-        <a href="#products">Honey</a>
+        <a href="#honey">Honey</a>
         <a href="#about">About</a>
       </nav>
 

@@ -6,46 +6,37 @@ function CustomCursor() {
 
   useEffect(() => {
     const cursor = cursorRef.current
+    if (!cursor) return
 
+    // Center the emoji directly on the pointer tip
+    gsap.set(cursor, { xPercent: -50, yPercent: -50 })
+
+    // Smooth physics tracking
     const moveX = gsap.quickTo(cursor, 'x', {
-      duration: 0.35,
-      ease: 'power3',
+      duration: 0.25,
+      ease: 'power3.out',
     })
 
     const moveY = gsap.quickTo(cursor, 'y', {
-      duration: 0.35,
-      ease: 'power3',
+      duration: 0.25,
+      ease: 'power3.out',
     })
 
     const handleMouseMove = (event) => {
-      moveX(event.clientX + 15)
-      moveY(event.clientY + 15)
+      moveX(event.clientX)
+      moveY(event.clientY)
     }
 
     window.addEventListener('mousemove', handleMouseMove)
 
-    // Gentle floating motion
-    const float = gsap.to(cursor, {
-      y: '+=6',
-      duration: 1.2,
-      repeat: -1,
-      yoyo: true,
-      ease: 'sine.inOut',
-    })
-
     return () => {
       window.removeEventListener('mousemove', handleMouseMove)
-      float.kill()
     }
   }, [])
 
   return (
-    <div
-      ref={cursorRef}
-      className="custom-cursor"
-      aria-hidden="true"
-    >
-      🐝
+    <div ref={cursorRef} className="custom-cursor" aria-hidden="true">
+      <span className="bee-emoji">🐝</span>
     </div>
   )
 }
